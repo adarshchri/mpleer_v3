@@ -8,6 +8,8 @@ from api_token import movie_token
 
 from pagination_button import create_pagination_buttons
 
+from utils import download_file
+
 
 async def movie_tmdb_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     argument = context.args
@@ -49,16 +51,22 @@ async def movie_tmdb_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             message = f"<b>{title}</b>\n\nGenres: {genre_string}\n\n<b>Release Date:</b> {formatted_release_date}\n\n<b>Trailer:</b> Trailer not available."
 
-        poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
+        if poster_path:
+            poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
+        else:
+            poster_url = "https://i.postimg.cc/cLGBr4Ry/carbon.png"
+
         keybord = [
             [InlineKeyboardButton(
                 text="Stream", callback_data=f"movie_{id}")]
         ]
         reply_makup = InlineKeyboardMarkup(keybord)
+
+        file = download_file(poster_url)
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
             parse_mode="HTML",
-            photo=poster_url,
+            photo=file,
             reply_markup=reply_makup,
             caption=message,
         )
@@ -143,7 +151,7 @@ async def movie_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if poster_path:
                 poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
             else:
-                poster_url = "https://postimg.cc/K4qVpHk2"
+                poster_url = "https://i.postimg.cc/cLGBr4Ry/carbon.png"
 
             character_pages.append(
                 {
@@ -157,7 +165,7 @@ async def movie_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
             extra_page = {
                 'title': 'tmdb',
                 'message': '<b>How to Search Movie if You Not able to Find in the Slide</b>\n\n\n\n<b>Just Get the TMDB id of movie Which you want to watch</b>\n\n<b>And Type</b>\n\n<b>/tmdb tmdb_id</b>',
-                'poster': 'https://postimg.cc/ykJfw5DS',
+                'poster': 'https://i.postimg.cc/cL3kbbmZ/tmdb-image.png',
                 'id': '4'
             }
             character_pages.insert(3, extra_page)
@@ -181,9 +189,10 @@ async def movie_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         message = current_character['message']
 
+        file = download_file(current_character['poster'])
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
-            photo=current_character['poster'],
+            photo=file,
             caption=message,
             reply_markup=reply_markup,
             parse_mode='HTML'
