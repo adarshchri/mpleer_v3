@@ -43,6 +43,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ],
         [
             InlineKeyboardButton(
+                text="📣 Feedback",
+                url="https://t.me/mpleer_feedback",
+            ),
+            InlineKeyboardButton(
                 text="ℹ️ Help",
                 url="https://www.youtube.com/watch?v=vZtm1wuA2yc&ab_channel=Indently",
             ),
