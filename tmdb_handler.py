@@ -26,14 +26,9 @@ async def tmdb_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if "id" not in context.user_data:
         # Call the tv_tmdb_search function if data was not found in tmdb_search
         await tv_tmdb_search(update, context)
-    # else:
-    #     await context.bot.send_message(
-    #         chat_id=update.effective_chat.id,
-    #         text="Movie not found.",
-    #     )
 
     # If data is still not found, send "Movie not found" message
-    if context.user_data.get("id") is None:
+    if "id" not in context.user_data:
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             text="Tmdb id not found.",
