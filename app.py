@@ -28,7 +28,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     photo_url = "https://postimg.cc/7JMQrS1D"
     greeting = f"Hiii!!🤩 {update.effective_user.first_name}"
     header = "🍿 Welcome to the worlds largest search engine on the net!"
-    paragraph = "Here, you can watch any movie/series by just typing imdb_id of a film or series..🔍"
+    paragraph = "Here, you can watch any movie/series by just typing name of a film or series..🔍"
+    example = "<b>E.g /tmdb 132117 </b>\n <b>E.g /movie pathaan </b> \n <b>E.g /tv farzi </b> \n"
     instructions = "⚠️ 𝖧𝗂𝗍 Help for watch video about How to search/watch...❓"
     browser = "🏹 Use Brave Browser on Mobile or Computer to Block Ads"
     maker = "❤️ Powered by: @mpleer_bot"
@@ -48,7 +49,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    message = f"{greeting} \n\n<b>{header}</b> \n\n {paragraph} \n\n {instructions} \n\n <b> {browser} </b> \n\n\n <b> {maker}</b>\n"
+    message = f"{greeting} \n\n<b>{header}</b> \n\n {paragraph} \n\n {example} \n\n {instructions} \n\n <b> {browser} </b> \n\n\n <b> {maker}</b>\n"
     await context.bot.send_photo(
         chat_id=update.effective_chat.id,
         photo=photo_url,
