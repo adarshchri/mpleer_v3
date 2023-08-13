@@ -10,6 +10,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: |
-        cd /root/mpleer_v3;
-        git pull origin main;
-        sudo supervisorctl restart all;
+          cd /root/mpleer_v3;
+          git pull origin main;
+          sudo supervisorctl restart all;
