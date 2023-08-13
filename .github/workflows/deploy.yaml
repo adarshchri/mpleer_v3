@@ -1,0 +1,15 @@
+name: Update Telegram Bot
+run-name: Update Telegram Bot
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+jobs:
+  update:
+    runs-on: self-hosted
+    steps:
+      - run: |
+          cd /root/mpleer_v3;
+          git pull origin main;
+          sudo supervisorctl restart all;
