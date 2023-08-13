@@ -20,6 +20,7 @@ async def movie_tmdb_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if "id" in movie_detail:
         # Getting title becaue tmdb have different variable decleration for movie
         id = movie_detail["id"]
+        context.user_data["id"] = id
         title = movie_detail["title"]
         original_title = movie_detail["original_title"]
         # overview = movie_detail["overview"]
@@ -70,11 +71,19 @@ async def movie_tmdb_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def movie_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     character_pages = []
     context.user_data['character_pages'] = character_pages
+
+    argument = context.args
+    if not argument:
+        movie_not_found = "<b>Type /movie &lt;Series Name&gt; </b> \n <b>E.g /movie pathaan</b>"
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=movie_not_found,
+            parse_mode='HTML'
+        )
+        return
     search_result = await context.bot.send_message(
         chat_id=update.effective_chat.id, text="Processing ...."
     )
-
-    argument = context.args
     argument_text = " ".join(argument)
     context.user_data["argument_text"] = argument_text
 

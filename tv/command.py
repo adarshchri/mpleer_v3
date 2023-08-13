@@ -18,6 +18,7 @@ async def tv_tmdb_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if "id" in tv_detail:
         id = tv_detail["id"]
+        context.user_data["id"] = id
         title = tv_detail["name"]
         original_name = tv_detail["original_name"]
         # overview = tv_detail["overview"]
@@ -83,11 +84,20 @@ async def tv_tmdb_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def tv_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     character_pages = []
     context.user_data['character_pages'] = character_pages
+
+    argument = context.args
+
+    if not argument:
+        tv_not_found = "<b>Type /tv &lt;Series Name&gt; </b> \n <b>E.g /tv farzi</b>"
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=tv_not_found,
+            parse_mode='HTML'
+        )
+        return
     search_result = await context.bot.send_message(
         chat_id=update.effective_chat.id, text="Processing ...."
     )
-
-    argument = context.args
     argument_text = " ".join(argument)
     context.user_data["argument_text"] = argument_text
 
