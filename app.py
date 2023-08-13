@@ -1,5 +1,5 @@
 from routes import routes, commands
-from api_token import token
+from api_token import token, url
 import base64
 import logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -81,10 +81,10 @@ if __name__ == "__main__":
         handler = CallbackQueryHandler(route.get('func'), route.get('path'))
         application.add_handler(handler)
 
-    # application.run_webhook(
-    #     listen="0.0.0.0",
-    #     port=443,
-    #     url_path=token,
-    #     webhook_url=f"{url}/{token}",
-    # )
-    application.run_polling()
+    application.run_webhook(
+        listen="0.0.0.0",
+        port=443,
+        url_path=token,
+        webhook_url=f"{url}/{token}",
+    )
+    # application.run_polling()

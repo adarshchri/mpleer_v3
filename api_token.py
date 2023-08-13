@@ -4,5 +4,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # defining the bot token
+url = os.getenv("URL")
 movie_token = os.getenv("MOVIE_TOKEN")
 token = os.getenv("TOKEN")
