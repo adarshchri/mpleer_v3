@@ -23,8 +23,9 @@ async def movie_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Select the Sever that you want to stream",
+        text="Select the Sever that you want to stream \n<b>Use Brave Browser to block ads.</b>",
         reply_markup=movie_server_reply_markup,
+        parse_mode='HTML',
     )
 
 
