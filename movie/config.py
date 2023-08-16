@@ -1,7 +1,7 @@
 movie_servers_config = {
     "vidsrc": "vidsrc.me/embed/movie?tmdb={0}",
-    "pogolinks": "pogolinks.lol/se_player.php?video_id={0}",
     "smashystream": "embed.smashystream.com/playere.php?tmdb={0}",
+    "pogolinks": "pogolinks.lol/se_player.php?video_id={0}",
     "superembed": "multiembed.mov/directstream.php?video_id={0}&tmdb=1",
     "remotestream": " remotestre.am/e/?tmdb={0}",
     "movieapi": "moviesapi.club/movie/{0}",
