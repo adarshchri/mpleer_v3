@@ -86,7 +86,7 @@ async def tv_episodes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         encode_bytes = base64.b64encode(string_to_encode.encode("utf-8"))
         encoded_string = encode_bytes.decode("utf-8")
         # Create a clickable link using Markdown formatting
-        clickable_link = f"<b>Episode {episode_number}</b> : <a href='https://mpleer.site/stream?movie={encoded_string}'>Click here to stream</a>"
+        clickable_link = f"<b>Episode {episode_number}</b> : <a href='https://mpleer.onrender.com/stream?movie={encoded_string}'>Click here to stream</a>"
         links.append(clickable_link)
 
     # Now 'links' list contains the clickable links for all episodes in the selected season

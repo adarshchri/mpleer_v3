@@ -41,7 +41,7 @@ async def movie_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
     encode_bytes = base64.b64encode(string_to_encode.encode("utf-8"))
     encoded_string = encode_bytes.decode("utf-8")
 
-    streaming_link = f"https://mpleer.site/stream?movie={encoded_string }"
+    streaming_link = f"https://mpleer.onrender.com/stream?movie={encoded_string }"
 
     message = (
         f"<b>Click Here to stream:</b> <a href='{streaming_link}'>Server {text}</a>"
